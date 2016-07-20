@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { render } from 'react-dom';
 
 
-class HelloWorld extends Component {
-  render() {
-    return (
-      <h1 className="hello-world">¡Hola Mundo!</h1>
-    );
-  }
-}
+const HelloWorld = ({name}) => (
+  <h1>Hello, {name}!</h1>
+);
+
+HelloWorld.propTypes = {
+  name: PropTypes.string.isRequired
+};
+
 
 render(
-  <HelloWorld />,
+  <HelloWorld name={'Flashcards'}/>,
   document.getElementById('root')
 );

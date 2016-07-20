@@ -64,9 +64,17 @@ else {
     common,
     {
       devtool: 'eval-source-map'
-    }
-  )
+    },
+    parts.setupSCSS(PATHS.style),
+    parts.devServer({
+      host: process.env.HOST,
+      port: process.env.PORT,
+      poll: process.env.ENABLE_POLLING
+    }),
+    parts.npmInstall()
+  );
 }
+
 
 module.exports = validate(config, {
   quiet: true
