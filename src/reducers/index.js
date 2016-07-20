@@ -1,11 +1,8 @@
-import React from 'react';
+import { combineReducers } from 'redux';
 import uuid from 'uuid';
 
-import Header from '../components/Header';
-import SubNav from '../components/SubNav';
-import DeckList from '../components/DeckList';
 
-const decks = [
+const initialDecks = [
   {
     id: uuid.v4(),
     name: 'Mathematics',
@@ -29,10 +26,17 @@ const decks = [
 ];
 
 
-export default () => (
-  <div>
-    <Header />
-    <SubNav username="User" numDecks={4}/>
-    <DeckList decks={decks} />
-  </div>
-);
+const decks = (state=initialDecks, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+
+const rootReducer = combineReducers({
+  decks
+});
+
+
+export default rootReducer;

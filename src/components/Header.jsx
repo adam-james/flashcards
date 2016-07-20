@@ -2,8 +2,7 @@ import React from 'react';
 
 import Container from './Container';
 
-
-export default () => (
+const Header = () => (
   <header className="header">
     <Container>
       <nav className="header-nav">
@@ -18,3 +17,6 @@ export default () => (
     </Container>
   </header>
 );
+
+
+export default Header;

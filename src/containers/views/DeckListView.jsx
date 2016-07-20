@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Container from './Container';
+
+import Container from '../../components/Container';
 
 
 const DeckListPanel = ({deck}) => (
@@ -18,7 +20,7 @@ DeckListPanel.propTypes = {
 };
 
 
-const DeckList = ({decks}) => (
+const DeckListView = ({decks}) => (
   <Container>
     <section className="deck-list">
         { decks.map( deck =>
@@ -27,8 +29,14 @@ const DeckList = ({decks}) => (
     </section>
   </Container>
 );
-DeckList.propTypes = {
+DeckListView.propTypes = {
   decks: React.PropTypes.array.isRequired
 };
 
-export default DeckList;
+
+const mapStateToProps = state => ({
+  decks: state.decks
+});
+
+
+export default connect(mapStateToProps)(DeckListView);

@@ -1,0 +1,17 @@
+import { createStore } from 'redux';
+
+import rootReducer from '../reducers';
+
+
+export default (initialState) => {
+  const store = createStore(rootReducer, initialState);
+
+  if (module.hot) {
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers');
+      store.replaceState(nextRootReducer);
+    });
+  }
+
+  return store;
+}
