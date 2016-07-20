@@ -7,7 +7,9 @@ const parts = require('./lib/parts');
 const PATHS = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
-  style: path.join(__dirname, 'src', 'scss', 'application.scss')
+  style: path.join(__dirname, 'src', 'scss', 'application.scss'),
+  favicon: path.join(__dirname, 'src', 'assets', 'img', 'favicon.png'),
+  images: path.join(__dirname, 'src', 'assets', 'img')
 };
 
 const common = merge(
@@ -26,8 +28,10 @@ const common = merge(
   },
   parts.indexTemplate({
     title: 'flashcards',
-    appMountId: 'root'
+    appMountId: 'root',
+    favicon: PATHS.favicon
   }),
+  parts.loadImages(PATHS.images),
   parts.loadJSX(PATHS.src),
   parts.lintJSX(PATHS.src)
 );

@@ -1,17 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
 
-const HelloWorld = ({name}) => (
-  <h1>Hello, {name}!</h1>
+const HelloWorld = () => (
+  <span className="icon hamburger-icon"></span>
 );
-
-HelloWorld.propTypes = {
-  name: PropTypes.string.isRequired
-};
 
 
 render(
-  <HelloWorld name={'Flashcards'}/>,
+  <HelloWorld />,
   document.getElementById('root')
 );
