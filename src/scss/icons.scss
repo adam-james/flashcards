@@ -1,35 +1,63 @@
-@mixin cssSprite( $spriteVals ) {
-	width: nth( $spriteVals, 1 );
-	height: nth( $spriteVals, 2 );
-	background-repeat: no-repeat;
-	background-image: url( #{ nth( $spriteVals, 3 ) } );
-	background-position: nth( $spriteVals, 4 ) nth( $spriteVals, 5 );
-	@media only screen and ( -webkit-min-device-pixel-ratio: 2 ), only screen and ( min-device-pixel-ratio: 2 ) {
-		background-image: url( #{ nth( $spriteVals, 6 ) } );
-		background-size: $bgiSizeW $bgiSizeH;
-	}
-}
-$spritePath: '../assets/img/sprite';
-$spriteURL: $spritePath + '.png';
-$spritex2URL: $spritePath + '@2.png';
-$bgiSizeW: 378px;
-$bgiSizeH: 66px;
-$hamburger-icon: 26px 25px $spriteURL -173px -36px $spritex2URL;
-$delete-card-icon: 30px 19px $spriteURL -133px -39px $spritex2URL;
-$new-card-icon: 30px 19px $spriteURL -93px -39px $spritex2URL;
-$delete-card-icon: 34px 23px $spriteURL -49px -38px $spritex2URL;
-$add-deck-icon: 34px 23px $spriteURL -5px -38px $spritex2URL;
-$hamburger-icon-orange: 26px 25px $spriteURL -173px -5px $spritex2URL;
-$delete-card-icon-hover: 30px 19px $spriteURL -133px -8px $spritex2URL;
-$new-card-icon-hover: 30px 19px $spriteURL -93px -8px $spritex2URL;
-$delete-deck-icon-hover: 34px 23px $spriteURL -49px -5px $spritex2URL;
-$add-deck-icon-hover: 34px 23px $spriteURL -5px -5px $spritex2URL;
-$brand: 167px 25px $spriteURL -218px -20px $spritex2URL;
-
 .icon {
   display: inline-block;
 }
 
+.icon-group:hover {
+
+  .delete-card-icon {
+    @include cssSprite($delete-card-icon-hover);
+  }
+
+  .new-card-icon {
+    @include cssSprite($new-card-icon-hover);
+  }
+
+  .new-deck-icon {
+    @include cssSprite($new-deck-icon-hover);
+  }
+
+  .delete-deck-icon {
+    @include cssSprite($delete-deck-icon-hover);
+  }
+}
+
 .hamburger-icon {
   @include cssSprite($hamburger-icon-orange);
+}
+
+.delete-card-icon {
+  @include cssSprite($delete-card-icon);
+}
+
+.delete-card-icon:hover {
+  @include cssSprite($delete-card-icon-hover);
+}
+
+.new-card-icon {
+  @include cssSprite($new-card-icon);
+}
+
+.new-card-icon:hover {
+  @include cssSprite($new-card-icon-hover);
+}
+
+.new-deck-icon {
+  @include cssSprite($new-deck-icon);
+}
+
+.new-deck-icon:hover {
+  @include cssSprite($new-deck-icon-hover);
+}
+
+.delete-deck-icon {
+  @include cssSprite($delete-deck-icon);
+}
+
+.delete-deck-icon:hover {
+  @include cssSprite($delete-deck-icon-hover);
+}
+
+.brand {
+  display: inline-block;
+  @include cssSprite($brand);
 }
