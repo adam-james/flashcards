@@ -91,7 +91,7 @@ h3 {
   .nav-item {
 
     height: 32px;
-    padding-top: 5px;
+    padding-top: 8px;
 
     span {
       margin-left: 10px;
@@ -102,5 +102,56 @@ h3 {
   .nav-item:hover {
     color: $orange;
     cursor: pointer;
+  }
+}
+
+.deck-list {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  .deck-list-panel {
+    border: 1px solid $gray;
+    height: 180px;
+    width: 287px;
+    margin-top: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    h2 {
+      font-size: 21px;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      margin: 0;
+    }
+
+    .panel-popup {
+      position: relative;
+      margin-top: 90px;
+      visibility: hidden;
+    }
+
+    .panel-popup-content {
+      position: absolute;
+      top: 19px;
+    }
+  }
+
+  .deck-list-panel:hover {
+    color: $orange;
+    border: 1px solid $orange;
+    transition: .2s;
+    cursor: pointer;
+
+    .panel-popup {
+      visibility: visible;
+    }
+
+    .panel-popup-content {
+      top: 0;
+      transition: .2s;
+    }
   }
 }

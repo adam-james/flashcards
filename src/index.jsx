@@ -1,15 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
+import uuid from 'uuid';
 
-
+/* eslint-disable */
 const Container = ({children}) => (
   <div className="container">
     { children }
   </div>
 );
-Container.propTypes = {
-  children: React.PropTypes.element
-};
+/* eslint-enable */
 
 
 const Header = () => (
@@ -51,10 +50,63 @@ SubNav.propTypes = {
 };
 
 
+const DeckList = ({decks}) => (
+  <Container>
+    <section className="deck-list">
+        { decks.map( deck =>
+          <DeckListPanel key={deck.id} deck={deck} />
+        )}
+    </section>
+  </Container>
+);
+DeckList.propTypes = {
+  decks: React.PropTypes.array.isRequired
+};
+
+const DeckListPanel = ({deck}) => (
+  <div className="deck-list-panel">
+    <h2>{deck.name}</h2>
+    <div className="panel-popup">
+      <div className="panel-popup-content">
+        { deck.cards.length } cards
+      </div>
+    </div>
+  </div>
+);
+DeckListPanel.propTypes = {
+  deck: React.PropTypes.object.isRequired
+};
+
+
+const decks = [
+  {
+    id: uuid.v4(),
+    name: 'Mathematics',
+    cards: {length: 10}
+  },
+  {
+    id: uuid.v4(),
+    name: 'Biology',
+    cards: {length: 12}
+  },
+  {
+    id: uuid.v4(),
+    name: 'History',
+    cards: {length: 21}
+  },
+  {
+    id: uuid.v4(),
+    name: 'Chemistry',
+    cards: {length: 0}
+  },
+];
+
+
 const App = () => (
   <div>
     <Header />
-    <SubNav username="User" numDecks="4"/>
+    <SubNav username="User" numDecks={4}/>
+    <DeckList decks={decks} />
   </div>
 );
 
