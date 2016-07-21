@@ -1,4 +1,5 @@
 import React from 'react';
+import { IndexLink } from 'react-router';
 
 import Container from './Container';
 
@@ -7,7 +8,9 @@ const Header = () => (
     <Container>
       <nav className="header-nav">
         <div className="nav-left">
-          <span className="brand"></span>
+          <IndexLink to="/">
+            <span className="brand"></span>
+          </IndexLink>
         </div>
 
         <div className="nav-right">

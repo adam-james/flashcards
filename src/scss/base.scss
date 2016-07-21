@@ -9,6 +9,11 @@ body {
   color: $gray;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* type scale is 3:4 */
 
 h1 {
@@ -105,20 +110,24 @@ h3 {
   }
 }
 
-.deck-list {
-
+.list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 20px;
+  justify-content: flex-start;
 
-  .deck-list-panel {
+  .list-panel {
     border: 1px solid $gray;
     height: 180px;
     width: 287px;
-    margin-top: 20px;
+    margin: 24px 0 0 24px;
     padding: 20px;
     box-sizing: border-box;
+  }
+}
+
+.deck-list {
+
+  .deck-list-panel {
 
     h2 {
       font-size: 21px;
@@ -140,6 +149,54 @@ h3 {
   }
 
   .deck-list-panel:hover {
+    color: $orange;
+    border: 1px solid $orange;
+    transition: .2s;
+    cursor: pointer;
+
+    .panel-popup {
+      visibility: visible;
+    }
+
+    .panel-popup-content {
+      top: 0;
+      transition: .2s;
+    }
+  }
+}
+
+.card-list {
+
+  .card-list-panel {
+    h2 {
+      font-size: 16px;
+      color: $gray;
+      font-weight: 300;
+      letter-spacing: .5px;
+      margin-top: 20px;
+    }
+
+    h3 {
+      font-size: 16px;
+      color: $orange;
+      font-weight: 300;
+      letter-spacing: .5px;
+      margin: 0;
+    }
+
+    .panel-popup {
+      position: relative;
+      margin-top: 30px;
+      visibility: hidden;
+    }
+
+    .panel-popup-content {
+      position: absolute;
+      top: 19px;
+    }
+  }
+
+  .card-list-panel:hover {
     color: $orange;
     border: 1px solid $orange;
     transition: .2s;

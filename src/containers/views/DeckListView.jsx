@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 
 import Container from '../../components/Container';
 
 
 const DeckListPanel = ({deck}) => (
-  <div className="deck-list-panel">
+  <div className="list-panel deck-list-panel">
     <h2>{deck.name}</h2>
     <div className="panel-popup">
       <div className="panel-popup-content">
@@ -22,9 +23,11 @@ DeckListPanel.propTypes = {
 
 const DeckListView = ({decks}) => (
   <Container>
-    <section className="deck-list">
+    <section className="list deck-list">
         { decks.map( deck =>
-          <DeckListPanel key={deck.id} deck={deck} />
+          <Link to={`decks/${deck.id}`} key={deck.id}>
+            <DeckListPanel deck={deck} />
+          </Link>
         )}
     </section>
   </Container>
