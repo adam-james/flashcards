@@ -219,3 +219,32 @@ h3 {
     }
   }
 }
+
+.card-detail-container {
+  display: flex;
+  justify-content: center;
+
+  .card-detail-item {
+    border: 1px solid $gray;
+    width: 90%;
+    max-width: 558px;
+    height: 338px;
+    padding: 25px;
+
+    h2 {
+      font-size: 16px;
+      color: $gray;
+      font-weight: 300;
+      letter-spacing: .5px;
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: 16px;
+      color: $orange;
+      font-weight: 300;
+      letter-spacing: .5px;
+      margin: 0;
+    }
+  }
+}

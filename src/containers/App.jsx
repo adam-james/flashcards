@@ -10,7 +10,7 @@ const getSubNavProps = ({pathname, decks}) => {
   const props = {};
   const pathnameArray = pathname.split('/');
 
-  if (pathnameArray[0] === 'decks' && pathnameArray.length === 2) {
+  if (pathnameArray[0] === 'decks' && pathnameArray.length === 3) {
     const deckId = pathnameArray[1];
     const deck = decks.filter( d => d.id === deckId )[0];
     props.title = deck.name;
@@ -23,6 +23,22 @@ const getSubNavProps = ({pathname, decks}) => {
       {
         name: 'New Card',
         icon: 'new-card-icon'
+      }
+    ];
+  }
+
+  else if (pathnameArray[1] === 'decks'
+          && pathnameArray[3] === 'cards'
+          && pathnameArray.length === 5) {
+
+    const deckId = pathnameArray[2];
+    const deck = decks.filter( d => d.id === deckId )[0];
+    props.title = deck.name;
+    props.message = `${deck.cards.length} cards`;
+    props.navItems = [
+      {
+        name: 'Delete Card',
+        icon: 'delete-card-icon'
       }
     ];
   }

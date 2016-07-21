@@ -25,7 +25,7 @@ const DeckListView = ({decks}) => (
   <Container>
     <section className="list deck-list">
         { decks.map( deck =>
-          <Link to={`decks/${deck.id}`} key={deck.id}>
+          <Link to={`decks/${deck.id}/cards`} key={deck.id}>
             <DeckListPanel deck={deck} />
           </Link>
         )}
