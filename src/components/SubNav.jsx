@@ -1,27 +1,48 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Container from './Container';
 
 
-const SubNav = ({username, numDecks}) => (
+const SubNavListItem = ({item}) => (
+  <div className="nav-item icon-group">
+    <span className={`icon ${item.icon}`}></span>
+    <span>{ item.name }</span>
+  </div>
+);
+SubNavListItem.propTypes = {
+  item: PropTypes.object.isRequired
+};
+
+
+const SubNavList = ({navItems}) => (
+  <ul className="sub-nav-list">
+    {
+      navItems.map((item, index) => <SubNavListItem item={item} key={index} />)
+    }
+  </ul>
+);
+SubNavList.propTypes = {
+  navItems: PropTypes.array.isRequired
+};
+
+
+const SubNav = ({title, message, navItems}) => (
   <nav className="sub-nav">
     <Container>
       <div className="nav-left">
-        <h1>Welcome, {username}!</h1>
-        <span>{numDecks} decks</span>
+        <h1>{ title }</h1>
+        <span>{message}</span>
       </div>
       <div className="nav-right">
-        <div className="nav-item icon-group">
-          <span className="icon new-deck-icon"></span>
-          <span>New Deck</span>
-        </div>
+        <SubNavList navItems={navItems} />
       </div>
     </Container>
   </nav>
 );
 SubNav.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  numDecks: React.PropTypes.number.isRequired
+  title: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  navItems: PropTypes.array.isRequired
 };
 
 

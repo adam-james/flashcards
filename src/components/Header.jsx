@@ -8,7 +8,7 @@ const Header = () => (
     <Container>
       <nav className="header-nav">
         <div className="nav-left">
-          <IndexLink to="/">
+          <IndexLink to="/decks">
             <span className="brand"></span>
           </IndexLink>
         </div>

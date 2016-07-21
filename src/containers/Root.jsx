@@ -1,40 +1,16 @@
 import React from 'react';
-import { Provider, connect } from 'react-redux';
-import { Route, Router, browserHistory, IndexRoute, push } from 'react-router';
+import { Provider } from 'react-redux';
+import { Route, Router, browserHistory, IndexRoute } from 'react-router';
 
+import App from './App';
 import DeckListView from './views/DeckListView';
 import CardListView from './views/CardListView';
-
-import Header from '../components/Header';
-import SubNav from '../components/SubNav';
-
-
-const App = ({children}) => (
-  <div>
-    <Header />
-    <SubNav username="User" numDecks={4}/>
-    { children }
-  </div>
-);
-App.propTypes = {
-  children: React.PropTypes.element.isRequired
-};
-
-
-const mapStateToProps = state => ({
-  decks: state.decks
-});
-
-
-const FinalApp = connect(mapStateToProps, {
-  push
-})(App);
 
 
 const Root = ({store}) => (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={FinalApp}>
+      <Route path="/decks" component={App}>
         <IndexRoute component={DeckListView} />
         <Route path="/decks/:id" component={CardListView} />
       </Route>
