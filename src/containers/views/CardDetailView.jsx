@@ -72,7 +72,7 @@ const CardDetailView = ({decks, params, router}) => {
   const card = deck.cards.filter( c => c.id === cardId )[0];
   const cancel = (e) => {
     e.stopPropagation();
-    router.push(`decks/${deck.id}/cards`);
+    router.push(`/decks/${deck.id}/cards`);
   }
 
   const handleSubmit = (card) => {

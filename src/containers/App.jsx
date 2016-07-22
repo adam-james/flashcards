@@ -10,12 +10,11 @@ const getSubNavProps = ({pathname, decks}) => {
   const props = {};
   const pathnameArray = pathname.split('/');
 
-  console.log(pathnameArray)
-
-  if (pathnameArray[0] === 'decks' && pathnameArray.length === 3) {
-    const deckId = pathnameArray[1];
+  if (pathnameArray[1] === 'decks' && pathnameArray.length === 4) {
+    const deckId = pathnameArray[2];
     const deck = decks.filter( d => d.id === deckId )[0];
     props.title = deck.name;
+    props.titleLink = `/decks/${deckId}/cards`;
     props.message = `${deck.cards.length} cards`;
     props.navItems = [
       {
@@ -36,6 +35,7 @@ const getSubNavProps = ({pathname, decks}) => {
     const deckId = pathnameArray[2];
     const deck = decks.filter( d => d.id === deckId )[0];
     props.title = deck.name;
+    props.titleLink = `/decks/${deckId}/cards`;
     props.message = `${deck.cards.length} cards`;
     props.navItems = [
       {

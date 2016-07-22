@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import Container from './Container';
 
@@ -26,11 +27,15 @@ SubNavList.propTypes = {
 };
 
 
-const SubNav = ({title, message, navItems}) => (
+const SubNav = ({title, message, navItems, titleLink}) => (
   <nav className="sub-nav">
     <Container>
       <div className="nav-left">
-        <h1>{ title }</h1>
+        {
+          titleLink ?
+          <Link to={titleLink}><h1>{ title }</h1></Link>
+          : <h1>{ title }</h1>
+        }
         <span>{message}</span>
       </div>
       <div className="nav-right">
@@ -41,6 +46,7 @@ const SubNav = ({title, message, navItems}) => (
 );
 SubNav.propTypes = {
   title: PropTypes.string.isRequired,
+  titleLink: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   navItems: PropTypes.array.isRequired
 };

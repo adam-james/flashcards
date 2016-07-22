@@ -249,7 +249,7 @@ h3 {
     border: 1px solid $gray;
     color: $gray;
     resize: none;
-    overflow: scroll;
+    overflow: auto;
   }
 
   textarea:focus {
