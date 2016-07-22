@@ -2,6 +2,7 @@ $font-stack: Georgia, serif;
 $base-font-size: 16px;
 $orange: #FF8F4D;
 $gray: #979797;
+$white: #FFFFFF;
 
 body {
   font-family: $font-stack;
@@ -223,28 +224,67 @@ h3 {
 .card-detail-container {
   display: flex;
   justify-content: center;
+}
 
-  .card-detail-item {
+.card-detail-item {
+  border: 1px solid $gray;
+  width: 90%;
+  max-width: 631px;
+  height: 376px;
+  padding: 30px;
+  box-sizing: border-box;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  label.focused {
+    color: $orange;
+  }
+
+  textarea {
+    width: 99%;
+    height: 100px;
     border: 1px solid $gray;
-    width: 90%;
-    max-width: 558px;
-    height: 338px;
-    padding: 25px;
+    color: $gray;
+    resize: none;
+    overflow: scroll;
+  }
 
-    h2 {
-      font-size: 16px;
-      color: $gray;
-      font-weight: 300;
-      letter-spacing: .5px;
-      margin-top: 0;
-    }
+  textarea:focus {
+    border: 1px solid $orange;
+    outline: none;
+    color: $orange;
+  }
 
-    h3 {
-      font-size: 16px;
-      color: $orange;
-      font-weight: 300;
-      letter-spacing: .5px;
-      margin: 0;
+  .button-group {
+    float: right;
+    margin-top: 15px;
+
+    .button {
+      margin-left: 10px;
     }
   }
+}
+
+.button {
+  width: 145px;
+  height: 36px;
+  background-color: $white;
+  border: 1px solid $orange;
+  color: $orange;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: 0;
+}
+
+.button-primary {
+  color: $white;
+  background-color: $orange;
 }

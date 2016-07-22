@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import Container from '../../components/Container';
 
@@ -12,17 +13,41 @@ class CardForm extends React.Component {
   render() {
     const { card } = this.props;
     return (
-      <form action="" onSubmit={ e => this.handleSubmit(e) }>
+      <form action="" className="card-form" onSubmit={ e => this.handleSubmit(e) }>
         <label htmlFor="question">Question</label>
-        <input type="text" defaultValue={card.question} ref="question" />
-
+        <textarea id="question"
+                  ref="question"
+                  onFocus={ e => this.handleFocus(e) }
+                  onBlur={ e => this.handleBlur(e) }
+                  defaultValue={card.question}>
+        </textarea>
         <label htmlFor="answer">Answer</label>
-        <input type="text" defaultValue={card.answer} ref="answer" />
-
-        <button type="button">Cancel</button>
-        <button type="submit">Submit</button>
+        <textarea id="answer"
+                  ref="answer"
+                  onFocus={ e => this.handleFocus(e) }
+                  onBlur={ e => this.handleBlur(e) }
+                  defaultValue={card.answer}>
+        </textarea>
+        <div className="button-group">
+          <button type="button"
+                  className="button"
+                  onClick={this.props.onCancel}>
+            Cancel
+          </button>
+          <button type="submit" className="button button-primary">Save</button>
+        </div>
       </form>
     );
+  }
+
+  handleFocus(e) {
+    const label = e.target.previousSibling;
+    label.classList.add('focused');
+  }
+
+  handleBlur(e) {
+    const label = e.target.previousSibling;
+    label.classList.remove('focused');
   }
 
   handleSubmit(e) {
@@ -36,14 +61,19 @@ class CardForm extends React.Component {
 }
 CardForm.propTypes = {
   card: PropTypes.object.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };
 
 
-const CardDetailView = ({decks, params}) => {
+const CardDetailView = ({decks, params, router}) => {
   const { cardId, deckId } = params;
   const deck = decks.filter( d => d.id === deckId )[0];
   const card = deck.cards.filter( c => c.id === cardId )[0];
+  const cancel = (e) => {
+    e.stopPropagation();
+    router.push(`decks/${deck.id}/cards`);
+  }
 
   const handleSubmit = (card) => {
     console.log(card)
@@ -53,7 +83,9 @@ const CardDetailView = ({decks, params}) => {
     <Container>
       <section className="card-detail-container">
         <div className="card-detail-item">
-          <CardForm card={card} onSubmit={handleSubmit} />
+          <CardForm card={card}
+                    onSubmit={handleSubmit}
+                    onCancel={cancel} />
         </div>
       </section>
     </Container>
@@ -61,7 +93,8 @@ const CardDetailView = ({decks, params}) => {
 }
 CardDetailView.propTypes = {
   decks: PropTypes.array.isRequired,
-  params: PropTypes.object.isRequired
+  params: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired
 };
 
 
@@ -70,4 +103,6 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps)(CardDetailView);
+const CardDetailViewWithRouter = withRouter(CardDetailView);
+
+export default connect(mapStateToProps)(CardDetailViewWithRouter);

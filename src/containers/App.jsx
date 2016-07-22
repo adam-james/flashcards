@@ -10,6 +10,8 @@ const getSubNavProps = ({pathname, decks}) => {
   const props = {};
   const pathnameArray = pathname.split('/');
 
+  console.log(pathnameArray)
+
   if (pathnameArray[0] === 'decks' && pathnameArray.length === 3) {
     const deckId = pathnameArray[1];
     const deck = decks.filter( d => d.id === deckId )[0];
