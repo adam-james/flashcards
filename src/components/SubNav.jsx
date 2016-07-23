@@ -46,7 +46,7 @@ const SubNav = ({title, message, navItems, titleLink}) => (
 );
 SubNav.propTypes = {
   title: PropTypes.string.isRequired,
-  titleLink: PropTypes.string.isRequired,
+  titleLink: PropTypes.string,
   message: PropTypes.string.isRequired,
   navItems: PropTypes.array.isRequired
 };

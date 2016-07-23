@@ -12,7 +12,7 @@ const getSubNavProps = ({pathname, decks}) => {
 
   if (pathnameArray[1] === 'decks' && pathnameArray.length === 4) {
     const deckId = pathnameArray[2];
-    const deck = decks.filter( d => d.id === deckId )[0];
+    const deck = decks[deckId];
     props.title = deck.name;
     props.titleLink = `/decks/${deckId}/cards`;
     props.message = `${deck.cards.length} cards`;
@@ -33,7 +33,7 @@ const getSubNavProps = ({pathname, decks}) => {
           && pathnameArray.length === 5) {
 
     const deckId = pathnameArray[2];
-    const deck = decks.filter( d => d.id === deckId )[0];
+    const deck = decks[deckId];
     props.title = deck.name;
     props.titleLink = `/decks/${deckId}/cards`;
     props.message = `${deck.cards.length} cards`;
@@ -47,7 +47,7 @@ const getSubNavProps = ({pathname, decks}) => {
 
   else {
     props.title = 'Welcome, User!';
-    props.message = `${decks.length} decks`
+    props.message = `${Object.keys(decks).length} decks`
     props.navItems = [
       {
         name: 'New Deck',
@@ -77,7 +77,7 @@ const App = ({children, decks, location}) => {
 App.propTypes = {
   children: PropTypes.element.isRequired,
   location: PropTypes.object.isRequired,
-  decks: PropTypes.array.isRequired
+  decks: PropTypes.object.isRequired
 };
 
 

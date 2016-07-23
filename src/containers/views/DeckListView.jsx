@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import map from 'lodash/map';
 
 
 import Container from '../../components/Container';
@@ -24,7 +25,7 @@ DeckListPanel.propTypes = {
 const DeckListView = ({decks}) => (
   <Container>
     <section className="list deck-list">
-        { decks.map( deck =>
+        { map(decks, deck =>
           <Link to={`/decks/${deck.id}/cards`} key={deck.id}>
             <DeckListPanel deck={deck} />
           </Link>
@@ -33,7 +34,7 @@ const DeckListView = ({decks}) => (
   </Container>
 );
 DeckListView.propTypes = {
-  decks: React.PropTypes.array.isRequired
+  decks: React.PropTypes.object.isRequired
 };
 
 

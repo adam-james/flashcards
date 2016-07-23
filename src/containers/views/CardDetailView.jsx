@@ -66,13 +66,12 @@ CardForm.propTypes = {
 };
 
 
-const CardDetailView = ({decks, params, router}) => {
-  const { cardId, deckId } = params;
-  const deck = decks.filter( d => d.id === deckId )[0];
-  const card = deck.cards.filter( c => c.id === cardId )[0];
+const CardDetailView = ({cards, params, router}) => {
+  const { cardId } = params;
+  const card = cards[cardId];
   const cancel = (e) => {
     e.stopPropagation();
-    router.push(`/decks/${deck.id}/cards`);
+    router.push(`/decks/${card.deck}/cards`);
   }
 
   const handleSubmit = (card) => {
@@ -92,14 +91,14 @@ const CardDetailView = ({decks, params, router}) => {
   );
 }
 CardDetailView.propTypes = {
-  decks: PropTypes.array.isRequired,
+  cards: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired,
   router: PropTypes.object.isRequired
 };
 
 
 const mapStateToProps = state => ({
-  decks: state.decks
+  cards: state.cards
 });
 
 

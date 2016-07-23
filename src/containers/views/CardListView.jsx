@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import filter from 'lodash/filter';
 
 import Container from '../../components/Container';
 
@@ -23,14 +24,14 @@ CardListPanel.propTypes = {
 };
 
 
-const CardListView = ({decks, params}) => {
+const CardListView = ({cards, params}) => {
   const { deckId } = params;
-  const deck = decks.filter( d => d.id === deckId)[0];
+  const deckCards = filter(cards, c => c.deck === deckId);
   return (
     <Container>
       <section className="list card-list">
         {
-          deck.cards.map( card =>
+          deckCards.map( card =>
             <CardListPanel key={card.id} deckId={deckId} card={card} />
           )
         }
@@ -39,13 +40,13 @@ const CardListView = ({decks, params}) => {
   );
 }
 CardListView.propTypes = {
-  decks: PropTypes.array.isRequired,
+  cards: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired
 };
 
 
 const mapStateToProps = state => ({
-  decks: state.decks
+  cards: state.cards
 });
 
 
