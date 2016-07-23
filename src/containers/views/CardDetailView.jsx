@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
+import { updateCard } from '../../actions';
+
 import Container from '../../components/Container';
 
 
@@ -66,7 +68,7 @@ CardForm.propTypes = {
 };
 
 
-const CardDetailView = ({cards, params, router}) => {
+const CardDetailView = ({cards, dispatch, params, router}) => {
   const { cardId } = params;
   const card = cards[cardId];
   const cancel = (e) => {
@@ -75,7 +77,7 @@ const CardDetailView = ({cards, params, router}) => {
   }
 
   const handleSubmit = (card) => {
-    console.log(card)
+    dispatch(updateCard(card));
   }
 
   return (
@@ -92,6 +94,7 @@ const CardDetailView = ({cards, params, router}) => {
 }
 CardDetailView.propTypes = {
   cards: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
   router: PropTypes.object.isRequired
 };

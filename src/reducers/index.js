@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
 import { arrayOf, normalize, Schema } from 'normalizr';
+import merge from 'lodash/merge';
+
+import { UPDATE_CARD } from '../constants';
 
 import mockData from './mockData';
 
@@ -18,10 +21,23 @@ card.define({
 });
 
 
+
+
 const initialData = normalize(mockData, {
   decks: arrayOf(deck)
 });
 
+
+const cards = (state=initialData.entities.cards, action) => {
+  switch (action.type) {
+    case UPDATE_CARD:
+      return merge({}, state, {
+        [action.payload.card.id]: action.payload.card
+      });
+    default:
+      return state;
+  }
+}
 
 
 const decks = (state=initialData.entities.decks, action) => {
@@ -32,7 +48,13 @@ const decks = (state=initialData.entities.decks, action) => {
 }
 
 
-const cards = (state=initialData.entities.cards, action) => {
+const initMessages = [
+  { message: 'Data saved.' },
+  { message: 'An error ocurred when processing your request to our servers.'}
+]
+
+
+const uiMessages = (state=initMessages, action) => {
   switch (action.type) {
     default:
       return state;
@@ -41,8 +63,9 @@ const cards = (state=initialData.entities.cards, action) => {
 
 
 const rootReducer = combineReducers({
+  cards,
   decks,
-  cards
+  uiMessages
 });
 
 

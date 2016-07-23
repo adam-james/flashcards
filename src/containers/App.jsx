@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import SubNav from '../components/SubNav';
+import UIMessageList from '../components/UIMessageList';
 
 
 const getSubNavProps = ({pathname, decks}) => {
@@ -68,6 +69,7 @@ const App = ({children, decks, location}) => {
 
   return (
     <div>
+      <UIMessageList />
       <Header />
       <SubNav {...subNavProps} />
       { children }
