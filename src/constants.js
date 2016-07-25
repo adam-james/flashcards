@@ -1,4 +1,4 @@
 export const UPDATE_CARD = 'UPDATE_CARD';
 
-export const FLASH_UI_MESSAGE = 'FLASH_UI_MESSAGE';
+export const SET_UI_MESSAGE = 'SET_UI_MESSAGE';
 export const CLEAR_UI_MESSAGE = 'CLEAR_UI_MESSAGE';

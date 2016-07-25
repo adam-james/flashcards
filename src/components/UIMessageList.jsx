@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import map from 'lodash/map';
 
 
 class UIMessageItem extends React.Component {
@@ -25,7 +26,7 @@ const UIMessageList = ({uiMessages}) => (
   <section className="ui-message-list">
     <ul>
       {
-        uiMessages.map((m, index) =>
+        map(uiMessages, (m, index) =>
           <UIMessageItem {...m} key={index} />
         )
       }
@@ -33,7 +34,7 @@ const UIMessageList = ({uiMessages}) => (
   </section>
 );
 UIMessageList.propTypes = {
-  uiMessages: PropTypes.array
+  uiMessages: PropTypes.object
 };
 
 

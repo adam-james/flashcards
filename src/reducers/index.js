@@ -2,7 +2,11 @@ import { combineReducers } from 'redux';
 import { arrayOf, normalize, Schema } from 'normalizr';
 import merge from 'lodash/merge';
 
-import { UPDATE_CARD } from '../constants';
+import { 
+  UPDATE_CARD,
+  SET_UI_MESSAGE,
+  CLEAR_UI_MESSAGE 
+} from '../constants';
 
 import mockData from './mockData';
 
@@ -19,8 +23,6 @@ deck.define({
 card.define({
   deck: deck
 });
-
-
 
 
 const initialData = normalize(mockData, {
@@ -48,14 +50,18 @@ const decks = (state=initialData.entities.decks, action) => {
 }
 
 
-const initMessages = [
-  { message: 'Data saved.' },
-  { message: 'An error ocurred when processing your request to our servers.'}
-]
-
-
-const uiMessages = (state=initMessages, action) => {
+const uiMessages = (state={}, action) => {
   switch (action.type) {
+    case SET_UI_MESSAGE:
+      return merge({}, state, {
+        [action.payload.messageId]: {
+          id: action.payload.messageId,
+          message: action.payload.message
+        }
+      });
+    case CLEAR_UI_MESSAGE:
+      delete state[action.payload.messageId];
+      return merge({}, state);
     default:
       return state;
   }

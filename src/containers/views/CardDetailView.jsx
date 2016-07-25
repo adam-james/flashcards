@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { updateCard } from '../../actions';
+import { flashUiMessage, updateCard } from '../../actions';
 
 import Container from '../../components/Container';
 
@@ -57,7 +57,8 @@ class CardForm extends React.Component {
     this.props.onSubmit({
       id: this.props.card.id,
       question: this.refs['question'].value,
-      answer: this.refs['answer'].value
+      answer: this.refs['answer'].value,
+      deck: this.props.card.deck
     });
   }
 }
@@ -78,6 +79,8 @@ const CardDetailView = ({cards, dispatch, params, router}) => {
 
   const handleSubmit = (card) => {
     dispatch(updateCard(card));
+    dispatch(flashUiMessage('Information saved.'));
+    router.push(`/decks/${card.deck}/cards`);
   }
 
   return (

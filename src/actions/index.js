@@ -1,3 +1,4 @@
+import uuid from 'uuid';
 import {
   UPDATE_CARD,
   SET_UI_MESSAGE,
@@ -13,10 +14,11 @@ export const updateCard = (card) => ({
 });
 
 
-const setUiMessage = message => ({
+const setUiMessage = ({messageId, message}) => ({
   type: SET_UI_MESSAGE,
   payload: {
-    message
+    message,
+    messageId
   }
 });
 
@@ -29,7 +31,18 @@ const clearUiMessage = messageId => ({
 });
 
 
-export const flashUiMessage = message => {
-  // code to flash UI message goes here
-  // you need redux-thunk in your middleware
-}
+export const flashUiMessage = function(message) {
+  return function(dispatch) {
+    const uiMessageId = uuid.v4();
+
+    dispatch(setUiMessage({
+      message,
+      messageId: uiMessageId
+    }));
+
+    const timeoutId = setTimeout(function() {
+      clearTimeout(timeoutId);
+      dispatch(clearUiMessage(uiMessageId));
+    }, 5000);
+  };
+};
