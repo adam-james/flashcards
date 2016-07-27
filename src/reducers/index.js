@@ -3,6 +3,7 @@ import { arrayOf, normalize, Schema } from 'normalizr';
 import merge from 'lodash/merge';
 
 import { 
+  CREATE_CARD,
   UPDATE_CARD,
   SET_UI_MESSAGE,
   CLEAR_UI_MESSAGE 
@@ -36,6 +37,10 @@ const cards = (state=initialData.entities.cards, action) => {
       return merge({}, state, {
         [action.payload.card.id]: action.payload.card
       });
+    case CREATE_CARD:
+      return merge({}, state, {
+        [action.payload.card.id]: action.payload.card
+      });
     default:
       return state;
   }
@@ -44,6 +49,14 @@ const cards = (state=initialData.entities.cards, action) => {
 
 const decks = (state=initialData.entities.decks, action) => {
   switch (action.type) {
+    case CREATE_CARD:
+      var deck = state[action.payload.card.deck];
+      var updated = merge({}, deck, {
+        cards: [...deck.cards, action.payload.card.id]
+      });
+      return merge({}, state, {
+        [updated.id]: updated
+      });
     default:
       return state;
   }

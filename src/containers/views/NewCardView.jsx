@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { flashUiMessage } from '../../actions';
+import { createCard, flashUiMessage } from '../../actions';
 
 import Container from '../../components/Container';
 import CardForm from '../../components/CardForm';
@@ -17,7 +17,7 @@ const NewCardView = ({dispatch, params, router}) => {
 
   const handleSubmit = (card) => {
     card.deck = deckId;
-    console.log(`create new card: ${JSON.stringify(card)}.`);
+    dispatch(createCard(card));
     dispatch(flashUiMessage('Information saved.'));
     router.push(`/decks/${deckId}/cards`);
   }

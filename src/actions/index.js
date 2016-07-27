@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import {
+  CREATE_CARD,
   UPDATE_CARD,
   SET_UI_MESSAGE,
   CLEAR_UI_MESSAGE,
@@ -47,3 +48,18 @@ export const flashUiMessage = function(message) {
     }, UI_MESSAGE_TIMEOUT + 1000);
   };
 };
+
+
+export function createCard({question, answer, deck}) {
+  return {
+    type: CREATE_CARD,
+    payload: {
+      card: {
+        id: uuid.v4(),
+        question,
+        answer,
+        deck
+      }
+    }
+  };
+}
