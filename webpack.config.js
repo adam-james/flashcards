@@ -57,7 +57,16 @@ if (process.env.npm_lifecycle_event === 'build') {
     ),
     parts.extractBundle({
       name: 'vendor',
-      entries: ['react', 'react-dom']
+      entries: [
+        'lodash',
+        'normalizr',
+        'react',
+        'react-dom',
+        'react-redux',
+        'react-router',
+        'redux',
+        'redux-thunk'
+      ]
     }),
     parts.minify(),
     parts.extractSCSS(PATHS.style)
