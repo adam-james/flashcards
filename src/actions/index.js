@@ -2,7 +2,8 @@ import uuid from 'uuid';
 import {
   UPDATE_CARD,
   SET_UI_MESSAGE,
-  CLEAR_UI_MESSAGE
+  CLEAR_UI_MESSAGE,
+  UI_MESSAGE_TIMEOUT
 } from '../constants';
 
 
@@ -43,6 +44,6 @@ export const flashUiMessage = function(message) {
     const timeoutId = setTimeout(function() {
       clearTimeout(timeoutId);
       dispatch(clearUiMessage(uiMessageId));
-    }, 5000);
+    }, UI_MESSAGE_TIMEOUT + 1000);
   };
 };

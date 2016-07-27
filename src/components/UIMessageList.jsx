@@ -2,13 +2,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import map from 'lodash/map';
 
+import { UI_MESSAGE_TIMEOUT } from '../constants';
+
 
 class UIMessageItem extends React.Component {
   componentDidMount() {
     const timeoutId = setTimeout(() => {
       this.refs['messageItem'].classList.add('hidden');
       clearTimeout(timeoutId);
-    }, 2000);
+    }, UI_MESSAGE_TIMEOUT);
   }
 
   render() {
