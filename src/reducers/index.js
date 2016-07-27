@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { arrayOf, normalize, Schema } from 'normalizr';
 import merge from 'lodash/merge';
+import omit from 'lodash/omit';
 
 import { 
   CREATE_CARD,
@@ -73,8 +74,7 @@ const uiMessages = (state={}, action) => {
         }
       });
     case CLEAR_UI_MESSAGE:
-      delete state[action.payload.messageId];
-      return merge({}, state);
+      return omit(state, [action.payload.messageId]);
     default:
       return state;
   }
