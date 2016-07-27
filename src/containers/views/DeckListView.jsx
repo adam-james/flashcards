@@ -5,6 +5,7 @@ import map from 'lodash/map';
 
 
 import Container from '../../components/Container';
+import SubNav from '../../components/SubNav';
 
 
 const DeckListPanel = ({deck}) => (
@@ -22,17 +23,32 @@ DeckListPanel.propTypes = {
 };
 
 
-const DeckListView = ({decks}) => (
-  <Container>
-    <section className="list deck-list">
-        { map(decks, deck =>
-          <Link to={`/decks/${deck.id}/cards`} key={deck.id}>
-            <DeckListPanel deck={deck} />
-          </Link>
-        )}
+function DeckListView({decks}) {
+  const subNavProps = {
+    title: 'Welcome, User!',
+    message: `${Object.keys(decks).length} decks`,
+    navItems: [
+      {
+        name: 'New Deck',
+        icon: 'new-deck-icon'
+      }
+    ]
+  };
+  return (
+    <section className="deck-list-view">
+      <SubNav {...subNavProps} />
+      <Container>
+        <section className="list deck-list">
+            { map(decks, deck =>
+              <Link to={`/decks/${deck.id}/cards`} key={deck.id}>
+                <DeckListPanel deck={deck} />
+              </Link>
+            )}
+        </section>
+      </Container>
     </section>
-  </Container>
-);
+  );
+}
 DeckListView.propTypes = {
   decks: React.PropTypes.object.isRequired
 };

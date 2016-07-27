@@ -20,12 +20,13 @@ SubNavListItem.propTypes = {
 const SubNavList = ({navItems}) => (
   <ul className="sub-nav-list">
     {
+      navItems &&
       navItems.map((item, index) => <SubNavListItem item={item} key={index} />)
     }
   </ul>
 );
 SubNavList.propTypes = {
-  navItems: PropTypes.array.isRequired
+  navItems: PropTypes.array
 };
 
 
@@ -50,7 +51,7 @@ SubNav.propTypes = {
   title: PropTypes.string.isRequired,
   titleLink: PropTypes.string,
   message: PropTypes.string.isRequired,
-  navItems: PropTypes.array.isRequired
+  navItems: PropTypes.array
 };
 
 
