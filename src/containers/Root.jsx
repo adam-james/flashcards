@@ -6,6 +6,7 @@ import App from './App';
 import DeckListView from './views/DeckListView';
 import CardListView from './views/CardListView';
 import CardDetailView from './views/CardDetailView';
+import NewCardView from './views/NewCardView';
 
 
 const Root = ({store}) => (
@@ -14,6 +15,7 @@ const Root = ({store}) => (
       <Route path="/decks" component={App}>
         <IndexRoute component={DeckListView} />
         <Route path="/decks/:deckId/cards" component={CardListView} />
+        <Route path="/decks/:deckId/cards/new" component={NewCardView} />
         <Route path="/decks/:deckId/cards/:cardId" component={CardDetailView} />
       </Route>
       <Redirect from="*" to="decks" />

@@ -6,8 +6,10 @@ import Container from './Container';
 
 const SubNavListItem = ({item}) => (
   <div className="nav-item icon-group">
-    <span className={`icon ${item.icon}`}></span>
-    <span>{ item.name }</span>
+    <Link to={item.link || '#'}>
+      <span className={`icon ${item.icon}`}></span>
+      <span>{ item.name }</span>
+    </Link>
   </div>
 );
 SubNavListItem.propTypes = {

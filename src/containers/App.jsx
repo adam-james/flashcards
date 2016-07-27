@@ -24,7 +24,8 @@ const getSubNavProps = ({pathname, decks}) => {
       },
       {
         name: 'New Card',
-        icon: 'new-card-icon'
+        icon: 'new-card-icon',
+        link: `/decks/${deck.id}/cards/new`
       }
     ];
   }
